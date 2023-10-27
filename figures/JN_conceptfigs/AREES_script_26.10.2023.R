@@ -193,13 +193,13 @@ logistic_plot
 # Changing the multiple pulse response plot so that all the plants have the same distribution just with different standard deviations? same mean
 pulse_new1 <- data.frame(value = rnorm(1000000, mean = 25, sd = 15),
                         species = "a")
-pulse_new2 <- data.frame(value = rnorm(1000000, mean = 35, sd = 20),
+pulse_new2 <- data.frame(value = rnorm(1000000, mean = 85, sd = 20),
                         species = "b")
-pulse_new3 <- data.frame(value = rnorm(1000000, mean = 40, sd = 30),
+pulse_new3 <- data.frame(value = rnorm(1000000, mean = 50, sd = 30),
                         species = "c")
-pulse_new4 <- data.frame(value = rnorm(1000000, mean = 30, sd = 40),
+pulse_new4 <- data.frame(value = rnorm(1000000, mean = 125, sd = 40),
                         species = "d")
-pulse_new5 <- data.frame(value = rnorm(1000000, mean = 20, sd = 50),
+pulse_new5 <- data.frame(value = rnorm(1000000, mean = 165, sd = 50),
                         species = "e")
 
 response_new <- rbind(pulse_new1,pulse_new2,pulse_new3,pulse_new4,pulse_new5)
@@ -223,10 +223,10 @@ one_pulse_response_new <- response_new %>%
         axis.ticks.y = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank())+
-  xlim(0,365)
+  xlim(-50,365)
 one_pulse_response_new
-# ggsave("plots/one_pulse_response_new2.png",plot=one_pulse_response_new,scale=1,dpi=600)
-# ggsave("plots/one_pulse_response_new2.pdf",plot=one_pulse_response_new,scale=1,dpi=600)
+ggsave("plots/one_pulse_response_new3.png",plot=one_pulse_response_new,scale=1,dpi=600)
+ggsave("plots/one_pulse_response_new3.pdf",plot=one_pulse_response_new,scale=1,dpi=600)
 
 # fixing the one pulse concept resource
 x <- seq(0, 20, length.out=1000)
