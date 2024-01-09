@@ -33,3 +33,5 @@ To maintain our focus on community assembly, we have not included studies that f
 % EMWJan8
 
 I didn't end up adding text for the Bazzaz ref, as I thought it fit with text we already had -- so I just referenced it. But I could add a sentence more explicitly about life history predicts annual to perennial, but also within season to the paragraph starting 'Integrating across intra- and inter-annual timescales is a common ...' (Let me know if you think I should. 
+
+I think we can make the strategies section fit a little better with some tweaks (including a transition at the end back to temporal niches) but I wanted to see what you think of the placement and how you finish it first. 
