@@ -45,25 +45,25 @@ jornada_abund_plot
 ############################################################################################################################
 # One pulse plots
 # making a big rnorm distribution centered around ~20 with a large sd
-pulse_initial <- data.frame(value = rnorm(1000000, mean = 20, sd = 75))
+# pulse_initial <- data.frame(value = rnorm(1000000, mean = 20, sd = 75))
 
-pulse_i_plot <- pulse_initial %>%
-  ggplot(aes(x = value)) +
-  geom_density(linewidth = 1)+
-  theme_few()+
-  labs(y = "Resource quantity",
-       x = "Time (days)") +
-  theme(axis.title = element_text(size = 12,face = "bold",),
-        legend.title = element_text(size = 12, face = "bold"),
-        legend.text = element_text(size = 10)) +
-  geom_vline(xintercept = 20, linewidth = 1,colour = "red", linetype = "twodash")+
-  xlim(0,365)+
-  theme(axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank())
-pulse_i_plot
-# ggsave("plots/one_pulse_concept.png",plot=pulse_i_plot,scale=1,dpi=600)
+# pulse_i_plot <- pulse_initial %>%
+#   ggplot(aes(x = value)) +
+#   geom_density(linewidth = 1)+
+#   theme_few()+
+#   labs(y = "Resource quantity",
+#        x = "Time (days)") +
+#   theme(axis.title = element_text(size = 12,face = "bold",),
+#         legend.title = element_text(size = 12, face = "bold"),
+#         legend.text = element_text(size = 10)) +
+#   geom_vline(xintercept = 20, linewidth = 1,colour = "red", linetype = "twodash")+
+#   xlim(0,365)+
+#   theme(axis.text.y = element_blank(),
+#         axis.ticks.y = element_blank(),
+#         axis.text.x = element_blank(),
+#         axis.ticks.x = element_blank())
+# pulse_i_plot
+# # ggsave("plots/one_pulse_concept.png",plot=pulse_i_plot,scale=1,dpi=600)
 
 # making the responses per species
 pulse_sp1 <- data.frame(value = rnorm(1000000, mean = 106, sd = 24),
@@ -79,30 +79,30 @@ pulse_sp5 <- data.frame(value = rnorm(1000000, mean = 238, sd = 75),
 
 response_combined <- rbind(pulse_sp1,pulse_sp2,pulse_sp3,pulse_sp4,pulse_sp5)
 
-one_pulse_response_plot <- response_combined %>%
-  ggplot(aes(x=value,colour=species))+
-  geom_density(linewidth=1)+
-  theme_few()+
-  labs(x = "Time (days)",
-       y = "Abundance") +
-  theme(axis.title = element_text(size = 12,face = "bold",),
-        legend.title = element_text(size = 12, face = "bold"),
-        legend.text = element_text(size = 10)) +
-  xlim(0,365) +
-  scale_colour_manual(values = c("a" = "#E69F00",
-                                 "b" = "#56B4E9",
-                                 "c" = "#CC79A7",
-                                 "d" = "#009E73",
-                                 "e" = "#F0E442"),
-                      breaks = c("a","b","c","d","e"))+
-  geom_vline(xintercept = 20,linewidth = 1,colour = "red", linetype = "twodash")+
-  theme(axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank())
-one_pulse_response_plot
-# ggsave("plots/one_pulse_response_plot.png",plot=one_pulse_response_plot,scale=1,dpi=600)
-ggsave("plots/one_pulse_response_plot.pdf",plot=one_pulse_response_plot,scale=1,dpi=600)
+# one_pulse_response_plot <- response_combined %>%
+#   ggplot(aes(x=value,colour=species))+
+#   geom_density(linewidth=1)+
+#   theme_few()+
+#   labs(x = "Time (days)",
+#        y = "Abundance") +
+#   theme(axis.title = element_text(size = 12,face = "bold",),
+#         legend.title = element_text(size = 12, face = "bold"),
+#         legend.text = element_text(size = 10)) +
+#   xlim(0,365) +
+#   scale_colour_manual(values = c("a" = "#E69F00",
+#                                  "b" = "#56B4E9",
+#                                  "c" = "#CC79A7",
+#                                  "d" = "#009E73",
+#                                  "e" = "#F0E442"),
+#                       breaks = c("a","b","c","d","e"))+
+#   geom_vline(xintercept = 20,linewidth = 1,colour = "red", linetype = "twodash")+
+#   theme(axis.text.y = element_blank(),
+#         axis.ticks.y = element_blank(),
+#         axis.text.x = element_blank(),
+#         axis.ticks.x = element_blank())
+# one_pulse_response_plot
+# # ggsave("plots/one_pulse_response_plot.png",plot=one_pulse_response_plot,scale=1,dpi=600)
+# ggsave("plots/one_pulse_response_plot.pdf",plot=one_pulse_response_plot,scale=1,dpi=600)
 
 ############################################################################################################################
 # Chemostat and no pulse response
@@ -129,28 +129,29 @@ chemostat_plot <- ggplot()+
        axis.ticks.x = element_blank())
 chemostat_plot
 # ggsave("plots/chemostat_plot.png",plot=chemostat_plot,scale=1,dpi=600)
+# ggsave("plots/chemostat_plot.pdf",plot=chemostat_plot,scale=1,dpi=600)
 
 # logistic curve? Will try doing rnorm into cumulative frequency
-chemo_sp1 <- data.frame(values = rnorm(10000, mean = 150, sd = 30),
-                           species = "a")
-chemo_sp2 <- data.frame(values = rnorm(10000, mean = 80, sd = 30),
-                           species = "b")
-
-chemostat_combined <- rbind(chemo_sp1,chemo_sp2)
-
-chemostat_response_concept <- chemostat_combined %>%
-  ggplot(aes(x = values,
-             colour = species)) +
-  stat_ecdf(linewidth = 1)+
-  xlim(0,365) +
-  ylim(0, 1.25) +
-  theme_few() +
-  theme(axis.title = element_text(size = 12,face = "bold",),
-        legend.title = element_text(size = 12, face = "bold"),
-        legend.text = element_text(size = 10)) +
-  theme(axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
-chemostat_response_concept
+# chemo_sp1 <- data.frame(values = rnorm(10000, mean = 150, sd = 30),
+#                            species = "a")
+# chemo_sp2 <- data.frame(values = rnorm(10000, mean = 80, sd = 30),
+#                            species = "b")
+# 
+# chemostat_combined <- rbind(chemo_sp1,chemo_sp2)
+# 
+# chemostat_response_concept <- chemostat_combined %>%
+#   ggplot(aes(x = values,
+#              colour = species)) +
+#   stat_ecdf(linewidth = 1)+
+#   xlim(0,365) +
+#   ylim(0, 1.25) +
+#   theme_few() +
+#   theme(axis.title = element_text(size = 12,face = "bold",),
+#         legend.title = element_text(size = 12, face = "bold"),
+#         legend.text = element_text(size = 10)) +
+#   theme(axis.text.y = element_blank(),
+#         axis.ticks.y = element_blank())
+# chemostat_response_concept
 
 # This doesn't work because both species terminate at the same end value
 # find a new way to make logistic curves
@@ -175,7 +176,8 @@ logistic_plot <- datacomb %>%
   theme_few() +
   theme(axis.title = element_text(size = 12,face = "bold",),
         legend.title = element_text(size = 12, face = "bold"),
-        legend.text = element_text(size = 10)) +
+        legend.text = element_text(size = 10),
+        legend.position = "none") +
   theme(axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
         axis.text.x = element_blank(),
@@ -186,7 +188,7 @@ logistic_plot <- datacomb %>%
                                  "sp_b" = "red"))
 logistic_plot
 # ggsave("plots/logisticAbundance.png",plot=logistic_plot,scale=1,dpi=600)
-
+# ggsave("plots/logisticAbundance.pdf",plot=logistic_plot,scale=1,dpi=600)
 
 #############################################################################
 # 4/10/2023 plots 
@@ -253,6 +255,7 @@ onepulse_plot <- resource %>%
         axis.ticks.x = element_blank())
 onepulse_plot
 # ggsave("plots/one_pulse_resource.png",plot=onepulse_plot,scale=1,dpi=600)
+# ggsave("plots/one_pulse_resource.pdf",plot=onepulse_plot,scale=1,dpi=600)
 
 # plotting a basic rnorm curve that can be edited and morphed into different heights and widths for the other concept plots
 normcurve_plot <- ggplot(data = data.frame(x = c(-4, 4)), aes(x)) +
